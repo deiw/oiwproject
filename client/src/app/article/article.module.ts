@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ContentComponent} from './content/content.component';
-import {MatCardModule} from '@angular/material';
+import {MatCardModule, MatPaginatorModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -9,7 +9,8 @@ import {MatCardModule} from '@angular/material';
   ],
   imports: [
     CommonModule,
-    MatCardModule
+    MatCardModule,
+    MatPaginatorModule
   ]
 })
 export class ArticleModule { }
