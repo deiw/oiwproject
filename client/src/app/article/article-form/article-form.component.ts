@@ -25,7 +25,7 @@ export class ArticleFormComponent implements OnInit {
     return this.formBuilder.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
-      imgUrl: ['', Validators.pattern('^https:\\/\\/\\S+|^http:\\/\\/\\S+')]
+      imgUrl: [null, Validators.pattern('^https:\\/\\/\\S+|^http:\\/\\/\\S+')]
     });
   }
 

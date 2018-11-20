@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 @Service
 class ArticleCreatorImpl implements ArticleCreator {
@@ -15,12 +16,14 @@ class ArticleCreatorImpl implements ArticleCreator {
         return Article.builder()
                 .title(articleData.getTitle())
                 .content(articleData.getContent())
-                .imgUrl(checkImgUrl(articleData.getImgUrl()))
+                .imgUrl(setImageUrl(articleData.getImgUrl()))
                 .creationTime(OffsetDateTime.now())
                 .build();
     }
 
-    private String checkImgUrl(String imgUrl) {
-        return Optional.ofNullable(imgUrl).orElse(DEFAULT_IMG_URL);
+    private String setImageUrl(String imgUrl) {
+        return Optional.ofNullable(imgUrl)
+                .filter(s -> !s.equals(""))
+                .orElse(DEFAULT_IMG_URL);
     }
 }

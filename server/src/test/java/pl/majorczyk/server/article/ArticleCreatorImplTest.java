@@ -34,9 +34,22 @@ public class ArticleCreatorImplTest {
     }
 
     @Test
-    public void ifNoImageUrl_shouldSetDefaultImageUrl() {
+    public void ifNullImageUrl_shouldSetDefaultImageUrl() {
         //given
         ArticleData data = new ArticleData("title", "content", null);
+
+        //when
+        Article article = articleCreator.createArticle(data);
+
+        //then
+        assertNotNull(article.getImgUrl());
+        assertEquals(DEFAULT_IMG_URL, article.getImgUrl());
+    }
+
+    @Test
+    public void ifEmptyImageUrl_shouldSetDefaultImageUrl() {
+        //given
+        ArticleData data = new ArticleData("title", "content", "");
 
         //when
         Article article = articleCreator.createArticle(data);
