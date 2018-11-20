@@ -3,3 +3,8 @@
 body {
   background-color: #e2e4ed;
 }
+
+.container {
+  margin-left: 10%;
+  margin-right: 10%;
+}

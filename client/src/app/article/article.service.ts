@@ -24,4 +24,7 @@ export class ArticleService {
     return this.http.get<Page<Article>>(environment.articleUrl, {params: params});
   }
 
+  public addArticle(article: Article): Observable<Article> {
+    return this.http.post<Article>(environment.articleUrl, article);
+  }
 }

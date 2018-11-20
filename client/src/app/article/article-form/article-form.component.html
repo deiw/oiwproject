@@ -1,0 +1,17 @@
+  <form [formGroup]="articleForm" method="post">
+    <mat-form-field>
+      <input matInput formControlName="title" type="text" placeholder="Title" required>
+      <mat-error *ngIf="!articleForm.get('title').valid">You must enter title</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput formControlName="content" type="text" placeholder="Content" rows="10" required></textarea>
+      <mat-error *ngIf="!articleForm.get('content').valid">You must enter content</mat-error>
+    </mat-form-field>
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="primary" [disabled]="articleForm.invalid" type="submit"
+              (click)="createArticle()">Create
+      </button>
+    </mat-dialog-actions>
+  </form>

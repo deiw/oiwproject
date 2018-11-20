@@ -4,6 +4,7 @@ import {Pageable} from '../../pageable';
 import {Article} from '../article';
 import {MatPaginator} from '@angular/material';
 import {Observable} from 'rxjs';
+import {ArticleDialogComponent} from '../article-form/article-dialog/article-dialog.component';
 
 @Component({
   selector: 'app-content',
@@ -12,6 +13,7 @@ import {Observable} from 'rxjs';
 })
 export class ContentComponent implements OnInit {
 
+  @ViewChild(ArticleDialogComponent) articleDialog: ArticleDialogComponent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   pageable: Pageable = {page: 0, size: 10, sort: 'creationTime', direction: 'DESC'};
   articles: Article[];
@@ -42,4 +44,8 @@ export class ContentComponent implements OnInit {
       });
   }
 
+  openDialog(): void {
+    this.articleDialog.openDialog();
+    this.articleDialog.dialogRef.afterClosed().subscribe(() => this.reload());
+  }
 }
