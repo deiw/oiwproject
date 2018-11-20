@@ -37,7 +37,7 @@ public class ArticleControllerTest {
     @Test
     public void shouldCreateArticle() throws Exception {
         //given
-        ArticleData articleData = new ArticleData("title", "content");
+        ArticleData articleData = new ArticleData("title", "content", "http://test.com");
 
         //when
         mockMvc.perform(post("/article")
@@ -51,7 +51,7 @@ public class ArticleControllerTest {
     @Test
     public void shouldValidEmptyArticleDataFields() throws Exception {
         //given
-        ArticleData articleData = new ArticleData("", "");
+        ArticleData articleData = new ArticleData("", "", "");
 
         //when
         mockMvc.perform(post("/article")
@@ -88,7 +88,7 @@ public class ArticleControllerTest {
     @Test
     public void shouldReturnArticleByTitle() throws Exception {
         //when
-        mockMvc.perform(get("/article/{title}","title"))
+        mockMvc.perform(get("/article/{title}", "title"))
                 .andExpect(status().isOk());
 
         //verify

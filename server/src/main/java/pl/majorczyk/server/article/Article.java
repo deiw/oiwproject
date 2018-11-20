@@ -26,4 +26,5 @@ class Article {
     @Column(length = 1500)
     private String content;
     private OffsetDateTime creationTime;
+    private String imgUrl;
 }

@@ -33,7 +33,7 @@ public class ArticleServiceImplTest {
     @Test
     public void shouldSaveArticle() {
         //given
-        ArticleData articleData = new ArticleData("title", "content");
+        ArticleData articleData = new ArticleData("title", "content", "http://test.com");
 
         //when
         Article result = articleService.saveArticle(articleData);
@@ -47,7 +47,7 @@ public class ArticleServiceImplTest {
     @Test
     public void shouldGetArticleByTitle() {
         //given
-        ArticleData articleData = new ArticleData("title", "content");
+        ArticleData articleData = new ArticleData("title", "content", "http://test.com");
         articleService.saveArticle(articleData);
 
         //when
@@ -62,7 +62,7 @@ public class ArticleServiceImplTest {
     @Test(expected = ArticleNotFoundException.class)
     public void ifArticleNotFound_shouldThrowException() {
         //given
-        ArticleData articleData = new ArticleData("title", "content");
+        ArticleData articleData = new ArticleData("title", "content", "http://test.com");
         articleService.saveArticle(articleData);
 
         //when
@@ -75,7 +75,7 @@ public class ArticleServiceImplTest {
     public void shouldReturnArticlesWithDefaultPageable() {
         //given
         for (int i = 0; i < 15; i++) {
-            articleService.saveArticle(new ArticleData("title" + i, "content" + i));
+            articleService.saveArticle(new ArticleData("title" + i, "content" + i, "http://test.com"));
         }
 
         PageRequest pageRequest = PageRequest.of(0, 10, Sort.Direction.DESC, "creationTime");

@@ -8,6 +8,12 @@
       <textarea matInput formControlName="content" type="text" placeholder="Content" rows="10" required></textarea>
       <mat-error *ngIf="!articleForm.get('content').valid">You must enter content</mat-error>
     </mat-form-field>
+
+    <mat-form-field>
+      <input matInput formControlName="imgUrl" type="url" placeholder="Image url">
+      <mat-error *ngIf="!articleForm.get('imgUrl').valid">Invalid url</mat-error>
+    </mat-form-field>
+
     <mat-dialog-actions>
       <button mat-button mat-dialog-close>Cancel</button>
       <button mat-raised-button color="primary" [disabled]="articleForm.invalid" type="submit"
