@@ -16,7 +16,7 @@ export class ArticleDialogComponent {
     this.dialogRef = this.dialog.open(ArticleFormComponent,
       {
         width: '40%',
-        height: '70%'
+        height: 'fit-content'
       });
   }
 }

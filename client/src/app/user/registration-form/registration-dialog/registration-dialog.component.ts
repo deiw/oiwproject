@@ -17,7 +17,7 @@ export class RegistrationDialogComponent {
     this.dialogRef = this.dialog.open(RegistrationFormComponent,
       {
         width: '40%',
-        height: '70%'
+        height: 'fit-content'
       });
   }
 }

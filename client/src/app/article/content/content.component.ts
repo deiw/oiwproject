@@ -3,8 +3,6 @@ import {ArticleService} from '../article.service';
 import {Pageable} from '../../pageable';
 import {Article} from '../article';
 import {MatPaginator} from '@angular/material';
-import {Observable} from 'rxjs';
-import {ArticleDialogComponent} from '../article-form/article-dialog/article-dialog.component';
 
 @Component({
   selector: 'app-content',
@@ -13,7 +11,6 @@ import {ArticleDialogComponent} from '../article-form/article-dialog/article-dia
 })
 export class ContentComponent implements OnInit {
 
-  @ViewChild(ArticleDialogComponent) articleDialog: ArticleDialogComponent;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   pageable: Pageable = {page: 0, size: 10, sort: 'creationTime', direction: 'DESC'};
   articles: Article[];
@@ -36,16 +33,11 @@ export class ContentComponent implements OnInit {
     this.getArticles();
   }
 
-  public getArticles() {
+  getArticles() {
     this.articleService.getArticles(this.pageable)
       .subscribe(data => {
         this.articles = data.content;
         this.totalElements = data.totalElements;
       });
-  }
-
-  openDialog(): void {
-    this.articleDialog.openDialog();
-    this.articleDialog.dialogRef.afterClosed().subscribe(() => this.reload());
   }
 }

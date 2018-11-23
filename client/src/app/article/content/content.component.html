@@ -1,15 +1,11 @@
-<app-article-dialog></app-article-dialog>
 <div class="container">
   <div class="flex-container">
     <mat-card *ngFor="let article of articles" class="card">
+      <img mat-card-image src="{{article.imgUrl}}">
       <mat-card-header>
         <mat-card-title>{{article.title}}</mat-card-title>
         <mat-card-subtitle>{{article.creationTime | date:"short"}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="{{article.imgUrl}}">
-      <mat-card-content>
-        <p>{{article.content}}</p>
-      </mat-card-content>
     </mat-card>
   </div>
   <mat-paginator
@@ -17,5 +13,4 @@
     [pageSize]="pageable.size"
     [pageSizeOptions]="pageSizeOptions">
   </mat-paginator>
-  <button (click)="openDialog()">create</button>
 </div>

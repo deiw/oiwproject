@@ -1,0 +1,17 @@
+<header class="header">
+  <div class="container header-container">
+    <div>
+      <img class="logo"
+           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRaTt4r0slRc2WC6I9FpS_shdT0KklpeanYmOYRTJhfJxWiu8i">
+    </div>
+    <div class="header-list">
+      <ul class="header-action-list">
+        <li (click)="openArticleCreatorDialog()">New Article<i class="fas fa-plus"></i></li>
+        <li>Sign in<i class="fas fa-sign-in-alt"></i></li>
+        <li (click)="openUserRegistrationDialog()">Sign up<i class="fas fa-user-plus"></i></li>
+      </ul>
+    </div>
+  </div>
+</header>
+<app-registration-dialog></app-registration-dialog>
+<app-article-dialog></app-article-dialog>

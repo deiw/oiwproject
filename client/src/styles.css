@@ -2,9 +2,23 @@
 
 body {
   background-color: #e2e4ed;
+  margin: 0;
 }
 
 .container {
   margin-left: 10%;
   margin-right: 10%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-dialog-actions {
+  justify-content: center;
 }

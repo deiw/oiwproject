@@ -7,10 +7,13 @@ import {ArticleModule} from './article/article.module';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {UserModule} from './user/user.module';
+import {HeaderComponent} from './header/header.component';
+import {ContentComponent} from './article/content/content.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +23,7 @@ import {UserModule} from './user/user.module';
     HttpClientModule,
     UserModule
   ],
-  providers: [],
+  providers: [ContentComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

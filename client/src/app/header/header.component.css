@@ -1,0 +1,43 @@
+.header {
+  background-color: black;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+}
+
+.header-list {
+  width: 80%;
+  list-style-type: none;
+}
+
+.header-action-list {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  color: white;
+  list-style-type: none;
+}
+
+.header-action-list li {
+  margin-left: 10px;
+  width: auto;
+  color: white;
+  transition: color .4s;
+}
+
+.header-action-list li:hover {
+  color: #c51933;
+  cursor: pointer;
+}
+
+.header-action-list li i {
+  margin: 7px;
+}

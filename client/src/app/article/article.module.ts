@@ -23,6 +23,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatButtonModule,
     MatInputModule
   ],
+  exports: [
+    ArticleFormComponent,
+    ArticleDialogComponent
+  ],
   entryComponents: [
     ArticleFormComponent
   ]

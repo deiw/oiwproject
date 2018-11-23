@@ -1,12 +1,12 @@
 <form [formGroup]="userForm" method="post">
   <mat-form-field>
     <input matInput formControlName="username" type="text" placeholder="Username" required>
-    <mat-error *ngIf="!articleForm.get('username').valid">You must enter username</mat-error>
+    <mat-error *ngIf="!userForm.get('username').valid">You must enter username</mat-error>
   </mat-form-field>
 
   <mat-form-field>
     <input matInput formControlName="password" type="password" placeholder="Password" required>
-    <mat-error *ngIf="!articleForm.get('password').valid">You must enter password</mat-error>
+    <mat-error *ngIf="!userForm.get('password').valid">You must enter password</mat-error>
   </mat-form-field>
 
   <mat-dialog-actions>
