@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {RegistrationDialogComponent} from '../user/registration-form/registration-dialog/registration-dialog.component';
 import {ArticleDialogComponent} from '../article/article-form/article-dialog/article-dialog.component';
-import {ContentComponent} from '../article/content/content.component';
+import {LoginDialogComponent} from '../user/login-form/login-dialog/login-dialog.component';
+import {AuthenticationService} from '../auth/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -12,8 +13,9 @@ export class HeaderComponent implements OnInit {
 
   @ViewChild(RegistrationDialogComponent) registrationDialog: RegistrationDialogComponent;
   @ViewChild(ArticleDialogComponent) articleDialog: ArticleDialogComponent;
+  @ViewChild(LoginDialogComponent) loginDialog: LoginDialogComponent;
 
-  constructor(private content: ContentComponent) {
+  constructor(private auth: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -25,5 +27,21 @@ export class HeaderComponent implements OnInit {
 
   openArticleCreatorDialog(): void {
     this.articleDialog.openDialog();
+  }
+
+  openLoginDialog(): void {
+    this.loginDialog.openDialog();
+  }
+
+  isLogged(): boolean {
+    return this.auth.isAuthenticated();
+  }
+
+  getUsername(): string {
+    return this.auth.getCurrentUserName();
+  }
+
+  logout(): void {
+    this.auth.logout();
   }
 }

@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
@@ -20,7 +21,8 @@ public class UserCreatorImplTest {
 
     @Before
     public void setUp() {
-        this.userCreator = new UserCreatorImpl(userRepository);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        this.userCreator = new UserCreatorImpl(userRepository, encoder);
     }
 
     @Test

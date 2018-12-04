@@ -4,9 +4,11 @@ import {RegistrationFormComponent} from './registration-form/registration-form.c
 import {RegistrationDialogComponent} from './registration-form/registration-dialog/registration-dialog.component';
 import {MatButtonModule, MatDialogModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {LoginFormComponent} from './login-form/login-form.component';
+import {LoginDialogComponent} from './login-form/login-dialog/login-dialog.component';
 
 @NgModule({
-  declarations: [RegistrationFormComponent, RegistrationDialogComponent],
+  declarations: [RegistrationFormComponent, RegistrationDialogComponent, LoginFormComponent, LoginDialogComponent],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -18,10 +20,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   ],
   exports: [
     RegistrationFormComponent,
-    RegistrationDialogComponent
+    RegistrationDialogComponent,
+    LoginFormComponent,
+    LoginDialogComponent,
   ],
   entryComponents: [
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    LoginFormComponent
   ]
 })
 export class UserModule {

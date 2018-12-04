@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   articleUrl: 'http://' + window.location.hostname + ':8080/article',
-  userUrl: 'http://' + window.location.hostname + ':8080/user'
+  userUrl: 'http://' + window.location.hostname + ':8080/user',
+  loginUrl: 'http://' + window.location.hostname + ':8080/login'
 };
 
 /*

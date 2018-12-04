@@ -1,0 +1,21 @@
+<form [formGroup]="loginForm" method="post">
+  <mat-form-field>
+    <input matInput formControlName="username" type="text" placeholder="Username" required>
+    <mat-error *ngIf="!loginForm.get('username').valid">You must enter username</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput formControlName="password" type="password" placeholder="Password" required>
+    <mat-error *ngIf="!loginForm.get('password').valid">You must enter password</mat-error>
+  </mat-form-field>
+
+  <p class="error" *ngIf="error">{{error}}</p>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid"
+            (click)="login()">Sign In
+    </button>
+  </mat-dialog-actions>
+</form>
+
