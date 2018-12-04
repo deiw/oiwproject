@@ -10,6 +10,7 @@ import {HeaderComponent} from './header/header.component';
 import {ContentComponent} from './article/content/content.component';
 import {AuthenticationService} from './auth/authentication.service';
 import {TokenInterceptor} from './auth/token.interceptor';
+import {MatSnackBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {TokenInterceptor} from './auth/token.interceptor';
     AppRoutingModule,
     ArticleModule,
     HttpClientModule,
-    UserModule
+    UserModule,
+    MatSnackBarModule
   ],
   providers: [
     ContentComponent,

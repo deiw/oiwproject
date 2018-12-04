@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../user.service';
-import {MatDialogRef} from '@angular/material';
+import {MatDialogRef, MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-registration-form',
@@ -14,7 +14,8 @@ export class RegistrationFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
-              private dialogRef: MatDialogRef<RegistrationFormComponent>) {
+              private dialogRef: MatDialogRef<RegistrationFormComponent>,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -29,6 +30,9 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   registerUser() {
-    this.userService.registerUser(this.userForm.value).subscribe(() => this.dialogRef.close());
+    this.userService.registerUser(this.userForm.value).subscribe(() => {
+      this.dialogRef.close();
+      this.snackBar.open('Successful registration! You can sign in now.', '', {duration: 1000});
+    });
   }
 }
