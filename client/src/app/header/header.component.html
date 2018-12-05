@@ -6,7 +6,6 @@
     </div>
     <div class="header-list">
       <ul class="header-action-list">
-        <li *ngIf="isLogged()" (click)="openArticleCreatorDialog()">New Article<i class="fas fa-plus"></i></li>
         <li *ngIf="!isLogged()" (click)="openLoginDialog()">Sign in<i class="fas fa-sign-in-alt"></i></li>
         <li *ngIf="!isLogged()" (click)="openUserRegistrationDialog()">Sign up<i class="fas fa-user-plus"></i></li>
         <li *ngIf="isLogged()">{{getUsername()}}<i class="fas fa-user"></i></li>
@@ -16,5 +15,4 @@
   </div>
 </header>
 <app-registration-dialog></app-registration-dialog>
-<app-article-dialog></app-article-dialog>
 <app-login-dialog></app-login-dialog>

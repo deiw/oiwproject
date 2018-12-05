@@ -1,6 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {RegistrationDialogComponent} from '../user/registration-form/registration-dialog/registration-dialog.component';
-import {ArticleDialogComponent} from '../article/article-form/article-dialog/article-dialog.component';
 import {LoginDialogComponent} from '../user/login-form/login-dialog/login-dialog.component';
 import {AuthenticationService} from '../auth/authentication.service';
 import {MatSnackBar} from '@angular/material';
@@ -13,7 +12,6 @@ import {MatSnackBar} from '@angular/material';
 export class HeaderComponent implements OnInit {
 
   @ViewChild(RegistrationDialogComponent) registrationDialog: RegistrationDialogComponent;
-  @ViewChild(ArticleDialogComponent) articleDialog: ArticleDialogComponent;
   @ViewChild(LoginDialogComponent) loginDialog: LoginDialogComponent;
 
   constructor(private auth: AuthenticationService,
@@ -25,10 +23,6 @@ export class HeaderComponent implements OnInit {
 
   openUserRegistrationDialog(): void {
     this.registrationDialog.openDialog();
-  }
-
-  openArticleCreatorDialog(): void {
-    this.articleDialog.openDialog();
   }
 
   openLoginDialog(): void {

@@ -30,9 +30,6 @@ export class ArticleFormComponent implements OnInit {
   }
 
   createArticle() {
-    this.articleService.addArticle(this.articleForm.value).subscribe(() => {
-      this.dialogRef.close();
-      window.location.reload();
-    });
+    this.articleService.addArticle(this.articleForm.value).subscribe(() => this.dialogRef.close());
   }
 }

@@ -3,6 +3,8 @@ import {ArticleService} from '../article.service';
 import {Pageable} from '../../pageable';
 import {Article} from '../article';
 import {MatPaginator} from '@angular/material';
+import {ArticleDialogComponent} from '../article-form/article-dialog/article-dialog.component';
+import {AuthenticationService} from '../../auth/authentication.service';
 
 @Component({
   selector: 'app-content',
@@ -12,12 +14,15 @@ import {MatPaginator} from '@angular/material';
 export class ContentComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(ArticleDialogComponent) articleDialog: ArticleDialogComponent;
+
   pageable: Pageable = {page: 0, size: 10, sort: 'creationTime', direction: 'DESC'};
   articles: Article[];
   totalElements: number;
   pageSizeOptions = [10, 25, 50];
 
-  constructor(private articleService: ArticleService) {
+  constructor(private articleService: ArticleService,
+              private authService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -39,5 +44,14 @@ export class ContentComponent implements OnInit {
         this.articles = data.content;
         this.totalElements = data.totalElements;
       });
+  }
+
+  openArticleCreatorDialog(): void {
+    this.articleDialog.openDialog();
+    this.articleDialog.dialogRef.afterClosed().subscribe(() => this.reload());
+  }
+
+  isLogged(): boolean {
+    return this.authService.isAuthenticated();
   }
 }

@@ -5,6 +5,7 @@ import {Article} from './article';
 import {environment} from '../../environments/environment';
 import {Pageable} from '../pageable';
 import {Page} from '../page';
+import {ArticleData} from './article-data';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class ArticleService {
     return this.http.get<Page<Article>>(environment.articleUrl, {params: params});
   }
 
-  public addArticle(article: Article): Observable<Article> {
+  public addArticle(article: ArticleData): Observable<Article> {
     return this.http.post<Article>(environment.articleUrl, article);
   }
 }
