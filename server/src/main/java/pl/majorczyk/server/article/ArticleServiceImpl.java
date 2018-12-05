@@ -11,6 +11,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     private final ArticleRepository articleRepository;
     private final ArticleCreator articleCreator;
+    private final ArticlePreviewMapper articlePreviewMapper;
 
     @Override
     public Article saveArticle(ArticleData articleData) {
@@ -19,8 +20,9 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Page<Article> getArticlePage(Pageable pageable) {
-        return articleRepository.findAll(pageable);
+    public Page<ArticlePreview> getArticlePage(Pageable pageable) {
+        return articleRepository.findAll(pageable)
+                .map(articlePreviewMapper::mapToPreview);
     }
 
     @Override

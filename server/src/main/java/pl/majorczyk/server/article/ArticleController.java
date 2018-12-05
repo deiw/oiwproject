@@ -25,7 +25,7 @@ class ArticleController {
     private final ArticleService articleService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Page<Article> getArticles(@PageableDefault(sort = "creationTime",
+    public Page<ArticlePreview> getArticles(@PageableDefault(sort = "creationTime",
             direction = Sort.Direction.DESC) Pageable pageable) {
         return articleService.getArticlePage(pageable);
     }

@@ -27,7 +27,8 @@ public class ArticleServiceImplTest {
     @Before
     public void setUp() {
         ArticleCreator articleCreator = new ArticleCreatorImpl();
-        this.articleService = new ArticleServiceImpl(articleRepository, articleCreator);
+        ArticlePreviewMapper articlePreviewMapper = new ArticlePreviewMapperImpl();
+        this.articleService = new ArticleServiceImpl(articleRepository, articleCreator, articlePreviewMapper);
     }
 
     @Test
@@ -57,6 +58,7 @@ public class ArticleServiceImplTest {
         assertNotNull(result);
         assertEquals(1L, result.getId().longValue());
         assertEquals(articleData.getTitle(), result.getTitle());
+        assertEquals(articleData.getContent(), result.getContent());
     }
 
     @Test(expected = ArticleNotFoundException.class)
@@ -72,7 +74,7 @@ public class ArticleServiceImplTest {
     }
 
     @Test
-    public void shouldReturnArticlesWithDefaultPageable() {
+    public void shouldReturnArticlesPreviewWithDefaultPageable() {
         //given
         for (int i = 0; i < 15; i++) {
             articleService.saveArticle(new ArticleData("title" + i, "content" + i, "http://test.com"));
@@ -81,7 +83,7 @@ public class ArticleServiceImplTest {
         PageRequest pageRequest = PageRequest.of(0, 10, Sort.Direction.DESC, "creationTime");
 
         //when
-        Page<Article> articles = articleService.getArticlePage(pageRequest);
+        Page<ArticlePreview> articles = articleService.getArticlePage(pageRequest);
 
         //then
         assertTrue(articles.hasContent());
