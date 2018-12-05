@@ -4,12 +4,11 @@ import org.springframework.stereotype.Service;
 
 import java.time.OffsetDateTime;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 @Service
 class ArticleCreatorImpl implements ArticleCreator {
 
-    private static final String DEFAULT_IMG_URL = "https://cdn.pixabay.com/photo/2018/10/30/09/12/coffee-3783137_1280.jpg";
+    private static final String DEFAULT_IMG_URL = "https://freephotos.cc/storage/preview/path/hM8bEk9yc4tfGoTp5aheU2u01B3Bn9FJyI8ZRtgE.jpeg";
 
     @Override
     public Article createArticle(ArticleData articleData) {
