@@ -2,8 +2,8 @@
   <div class="action-container">
     <button class="add-article-button" *ngIf="isLogged()" (click)="openArticleCreatorDialog()">New Article</button>
   </div>
-  <div class="flex-container">
-    <mat-card *ngFor="let article of articles" class="card">
+  <div class="content-container">
+    <mat-card *ngFor="let article of articles" class="card" (click)="navigateToArticle(article.title)">
       <img mat-card-image src="{{article.imgUrl}}">
       <mat-card-header>
         <mat-card-title>{{article.title}}</mat-card-title>

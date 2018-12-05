@@ -13,6 +13,10 @@
   height: 70px;
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
 .header-list {
   width: 80%;
   list-style-type: none;

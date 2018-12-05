@@ -4,10 +4,9 @@
   word-break: break-all;
 }
 
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.card:hover {
+  cursor: pointer;
+  mat-elevation-z: 3;
 }
 
 .add-article-button {

@@ -5,6 +5,7 @@ import {Article} from '../article';
 import {MatPaginator} from '@angular/material';
 import {ArticleDialogComponent} from '../article-form/article-dialog/article-dialog.component';
 import {AuthenticationService} from '../../auth/authentication.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-content',
@@ -22,7 +23,8 @@ export class ContentComponent implements OnInit {
   pageSizeOptions = [10, 25, 50];
 
   constructor(private articleService: ArticleService,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -53,5 +55,9 @@ export class ContentComponent implements OnInit {
 
   isLogged(): boolean {
     return this.authService.isAuthenticated();
+  }
+
+  navigateToArticle(title: string) {
+    this.router.navigateByUrl('/' + title);
   }
 }

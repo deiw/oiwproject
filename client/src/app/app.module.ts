@@ -11,6 +11,7 @@ import {ContentComponent} from './article/content/content.component';
 import {AuthenticationService} from './auth/authentication.service';
 import {TokenInterceptor} from './auth/token.interceptor';
 import {MatSnackBarModule} from '@angular/material';
+import {AuthGuard} from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import {MatSnackBarModule} from '@angular/material';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }],
+    },
+  AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

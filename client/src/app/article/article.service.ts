@@ -27,4 +27,8 @@ export class ArticleService {
   public addArticle(article: ArticleData): Observable<Article> {
     return this.http.post<Article>(environment.articleUrl, article);
   }
+
+  public getArticleByTitle(title: string): Observable<Article> {
+    return this.http.get<Article>(environment.articleUrl + '/' + title);
+  }
 }

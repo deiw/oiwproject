@@ -5,12 +5,14 @@ import {MatButtonModule, MatCardModule, MatDialogModule, MatFormFieldModule, Mat
 import {ArticleFormComponent} from './article-form/article-form.component';
 import {ArticleDialogComponent} from './article-form/article-dialog/article-dialog.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SingleArticleComponent } from './single-article/single-article.component';
 
 @NgModule({
   declarations: [
     ContentComponent,
     ArticleFormComponent,
-    ArticleDialogComponent
+    ArticleDialogComponent,
+    SingleArticleComponent
   ],
   imports: [
     CommonModule,
