@@ -3,6 +3,7 @@ package pl.majorczyk.server.article;
 
 import org.junit.Before;
 import org.junit.Test;
+import pl.majorczyk.server.utils.UserUtils;
 
 import java.time.OffsetDateTime;
 
@@ -21,12 +22,13 @@ public class ArticlePreviewMapperImplTest {
     @Test
     public void shouldMapArticleToDemoVersionWithoutContent() {
         //given
-        Article article = Article.builder()
+        ArticleEntity article = ArticleEntity.builder()
                 .id(1L)
                 .title("title")
                 .content("content")
                 .creationTime(OffsetDateTime.now())
                 .imgUrl("http://url.com")
+                .creator(UserUtils.getDefaultUser())
                 .build();
 
         //when

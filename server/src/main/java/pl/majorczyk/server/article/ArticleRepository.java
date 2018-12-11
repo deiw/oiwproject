@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ArticleRepository extends PagingAndSortingRepository<Article, Long> {
-    Optional<Article> findByTitle(String title);
+public interface ArticleRepository extends PagingAndSortingRepository<ArticleEntity, Long> {
+    Optional<ArticleEntity> findByTitle(String title);
 }

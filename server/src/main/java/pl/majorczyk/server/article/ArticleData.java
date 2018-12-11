@@ -18,4 +18,6 @@ class ArticleData {
     private String content;
     @URL
     private String imgUrl;
+    @NotBlank
+    private String creator;
 }

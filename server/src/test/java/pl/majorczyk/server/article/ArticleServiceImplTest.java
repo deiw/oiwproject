@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
+import pl.majorczyk.server.user.UserRepository;
+import pl.majorczyk.server.utils.UserUtils;
 
 import java.util.Objects;
 
@@ -22,19 +24,23 @@ public class ArticleServiceImplTest {
 
     @Autowired
     private ArticleRepository articleRepository;
+    @Autowired
+    private UserRepository userRepository;
     private ArticleService articleService;
 
     @Before
     public void setUp() {
-        ArticleCreator articleCreator = new ArticleCreatorImpl();
+        ArticleCreator articleCreator = new ArticleCreatorImpl(userRepository, articleRepository);
         ArticlePreviewMapper articlePreviewMapper = new ArticlePreviewMapperImpl();
-        this.articleService = new ArticleServiceImpl(articleRepository, articleCreator, articlePreviewMapper);
+        ArticleMapper articleMapper = new ArticleMapperImpl();
+        this.articleService = new ArticleServiceImpl(articleRepository, articleCreator, articlePreviewMapper, articleMapper);
+        userRepository.save(UserUtils.getDefaultUser());
     }
 
     @Test
     public void shouldSaveArticle() {
         //given
-        ArticleData articleData = new ArticleData("title", "content", "http://test.com");
+        ArticleData articleData = new ArticleData("title", "content", "http://test.com", "user");
 
         //when
         Article result = articleService.saveArticle(articleData);
@@ -48,7 +54,7 @@ public class ArticleServiceImplTest {
     @Test
     public void shouldGetArticleByTitle() {
         //given
-        ArticleData articleData = new ArticleData("title", "content", "http://test.com");
+        ArticleData articleData = new ArticleData("title", "content", "http://test.com", "user");
         articleService.saveArticle(articleData);
 
         //when
@@ -56,7 +62,6 @@ public class ArticleServiceImplTest {
 
         //then
         assertNotNull(result);
-        assertEquals(1L, result.getId().longValue());
         assertEquals(articleData.getTitle(), result.getTitle());
         assertEquals(articleData.getContent(), result.getContent());
     }
@@ -64,7 +69,7 @@ public class ArticleServiceImplTest {
     @Test(expected = ArticleNotFoundException.class)
     public void ifArticleNotFound_shouldThrowException() {
         //given
-        ArticleData articleData = new ArticleData("title", "content", "http://test.com");
+        ArticleData articleData = new ArticleData("title", "content", "http://test.com", "user");
         articleService.saveArticle(articleData);
 
         //when
@@ -77,7 +82,7 @@ public class ArticleServiceImplTest {
     public void shouldReturnArticlesPreviewWithDefaultPageable() {
         //given
         for (int i = 0; i < 15; i++) {
-            articleService.saveArticle(new ArticleData("title" + i, "content" + i, "http://test.com"));
+            articleService.saveArticle(new ArticleData("title" + i, "content" + i, "http://test.com", "user"));
         }
 
         PageRequest pageRequest = PageRequest.of(0, 10, Sort.Direction.DESC, "creationTime");

@@ -12,4 +12,5 @@ public class ArticlePreview {
     private String title;
     private OffsetDateTime creationTime;
     private String imgUrl;
+    private String creator;
 }

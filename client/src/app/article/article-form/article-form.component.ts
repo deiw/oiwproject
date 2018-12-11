@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ArticleService} from '../article.service';
 import {MatDialogRef} from '@angular/material';
+import {AuthenticationService} from '../../auth/authentication.service';
 
 @Component({
   selector: 'app-article-form',
@@ -14,18 +15,21 @@ export class ArticleFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private articleService: ArticleService,
-              private dialogRef: MatDialogRef<ArticleFormComponent>) {
+              private dialogRef: MatDialogRef<ArticleFormComponent>,
+              private authService: AuthenticationService) {
   }
 
   ngOnInit() {
     this.articleForm = this.buildArticleForm();
+    this.articleForm.get('creator').setValue(this.authService.getCurrentUserName());
   }
 
   buildArticleForm() {
     return this.formBuilder.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
-      imgUrl: [null, Validators.pattern('^https:\\/\\/\\S+|^http:\\/\\/\\S+')]
+      imgUrl: [null, Validators.pattern('^https:\\/\\/\\S+|^http:\\/\\/\\S+')],
+      creator: ['', Validators.required]
     });
   }
 

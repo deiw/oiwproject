@@ -12,11 +12,12 @@ public class ArticleServiceImpl implements ArticleService {
     private final ArticleRepository articleRepository;
     private final ArticleCreator articleCreator;
     private final ArticlePreviewMapper articlePreviewMapper;
+    private final ArticleMapper articleMapper;
 
     @Override
     public Article saveArticle(ArticleData articleData) {
-        Article article = articleCreator.createArticle(articleData);
-        return articleRepository.save(article);
+        ArticleEntity article = articleCreator.createArticle(articleData);
+        return articleMapper.map(article);
     }
 
     @Override
@@ -27,7 +28,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article findArticleByTitle(String title) {
-        return articleRepository.findByTitle(title)
+        ArticleEntity article = articleRepository.findByTitle(title)
                 .orElseThrow(ArticleNotFoundException::new);
+        return articleMapper.map(article);
     }
 }
