@@ -1,8 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {ArticleService} from '../article.service';
 import {Pageable} from '../../pageable';
 import {Article} from '../article';
-import {MatPaginator} from '@angular/material';
 import {ArticleDialogComponent} from '../article-form/article-dialog/article-dialog.component';
 import {AuthenticationService} from '../../auth/authentication.service';
 import {Router} from '@angular/router';
@@ -14,13 +13,11 @@ import {Router} from '@angular/router';
 })
 export class ContentComponent implements OnInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(ArticleDialogComponent) articleDialog: ArticleDialogComponent;
 
   pageable: Pageable = {page: 0, size: 10, sort: 'creationTime', direction: 'DESC'};
-  articles: Article[];
+  articles: Article[] = [];
   totalElements: number;
-  pageSizeOptions = [10, 25, 50];
 
   constructor(private articleService: ArticleService,
               private authService: AuthenticationService,
@@ -29,11 +26,7 @@ export class ContentComponent implements OnInit {
 
   ngOnInit() {
     this.reload();
-    this.paginator.page.subscribe(() => {
-      this.pageable.page = this.paginator.pageIndex;
-      this.pageable.size = this.paginator.pageSize;
-      this.reload();
-    });
+    this.pageable.page = 0;
   }
 
   reload() {
@@ -43,7 +36,7 @@ export class ContentComponent implements OnInit {
   getArticles() {
     this.articleService.getArticles(this.pageable)
       .subscribe(data => {
-        this.articles = data.content;
+        this.articles = this.articles.concat(data.content);
         this.totalElements = data.totalElements;
       });
   }
@@ -59,5 +52,14 @@ export class ContentComponent implements OnInit {
 
   navigateToArticle(title: string) {
     this.router.navigateByUrl('/' + title);
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    if (window.innerHeight + window.scrollY === document.body.scrollHeight
+      && this.totalElements > this.articles.length) {
+      this.pageable.page++;
+      this.reload();
+    }
   }
 }
